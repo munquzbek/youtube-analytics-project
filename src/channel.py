@@ -16,6 +16,33 @@ class Channel:
         self.video_count = data['items'][0]['statistics']['videoCount']
         self.view_count = data['items'][0]['statistics']['viewCount']
 
+    def __str__(self):
+        return f'{self.title} ({self.url})'
+
+    def __add__(self, other):
+        return int(self.subscriber_count) + int(other.subscriber_count)
+
+    def __sub__(self, other):
+        return int(self.subscriber_count) - int(other.subscriber_count)
+
+    def __lt__(self, other):
+        return int(self.subscriber_count) < int(other.subscriber_count)
+
+    def __gt__(self, other):
+        return int(self.subscriber_count) > int(other.subscriber_count)
+
+    def __le__(self, other):
+        return int(self.subscriber_count) <= int(other.subscriber_count)
+
+    def __ge__(self, other):
+        return int(self.subscriber_count) >= int(other.subscriber_count)
+
+    def __eq__(self, other):
+        return int(self.subscriber_count) == int(other.subscriber_count)
+
+    def __ne__(self, other):
+        return int(self.subscriber_count) != int(other.subscriber_count)
+
     @classmethod
     def get_service(cls):
         youtube = build('youtube', 'v3', developerKey=api_key)
@@ -34,5 +61,3 @@ class Channel:
 
         with open(where_to_save, "w") as outfile:
             json.dump(dictionary, outfile, indent=4, ensure_ascii=False)
-
-
