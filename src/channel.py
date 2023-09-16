@@ -61,3 +61,4 @@ class Channel:
 
         with open(where_to_save, "w") as outfile:
             json.dump(dictionary, outfile, indent=4, ensure_ascii=False)
+
